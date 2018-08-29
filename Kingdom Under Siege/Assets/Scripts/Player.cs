@@ -7,15 +7,16 @@ public class Player : Character
 
   
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
         GetInput();
+        base.Start();
         base.Update();  //executes Character.cs update|| base = access inheritance
-        
+       
         
 
         
