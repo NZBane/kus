@@ -118,7 +118,7 @@ public class Player : Character
         isAttacking = true;
         myAnimator.SetBool("attack", true);
         CastSpell();
-        yield return new WaitForSeconds(0.5f); //cast time hard code
+        yield return new WaitForSeconds(2); //cast time hard code
        
         StopAttack();
         

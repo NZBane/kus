@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DungeonGen\DungeonScript\RoomSpawner.cs" />
+     <Compile Include="Assets\DungeonGen\DungeonScript\RoomTemplates.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Spell.cs" />
