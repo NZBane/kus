@@ -7,6 +7,8 @@ public class Stat : MonoBehaviour {
 
     private Image content; //references to Image properties on unity
     [SerializeField]
+    private Text statValue;
+    [SerializeField]
     private float lerpSpeed;
     private float currentFill;
     public float MyMaxValue { get; set; }
@@ -35,6 +37,8 @@ public class Stat : MonoBehaviour {
             }
             
             currentFill = currentValue / MyMaxValue;
+
+            statValue.text = currentValue + " / " + MyMaxValue; // for health and mana bar text
         }
 
 

@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Spell.cs" />
      <Compile Include="Assets\Scripts\Stat.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Carlisle/Desktop/Game/kus/Kingdom Under Siege/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
