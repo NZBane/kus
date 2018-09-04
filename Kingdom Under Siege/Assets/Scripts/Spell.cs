@@ -1,33 +1,95 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using System.Text;
 
-public class Spell : MonoBehaviour {
 
+[System.Serializable]
+public class Spell
+{
+    [SerializeField]
+    private string name;
+    [SerializeField]
+    private int damage;
+    [SerializeField]
+    private Sprite icon;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float castTime;
+    [SerializeField]
+    private GameObject spellPrefab;
+    [SerializeField]
+    private Color barColor;
 
-    private Rigidbody2D myRigidBody;
-
-    private Transform target;
-
-	// Use this for initialization
-	void Start () {
-        myRigidBody = GetComponent<Rigidbody2D>();
-        target = GameObject.Find("Target").transform; //heavy on cpu = only use for testing!!!
-	}
-	
-    
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    private void FixedUpdate()
+    public string MyName
     {
-        //for every frame, the casted spell will travel to target even if its moving
-        Vector2 direction = target.position - transform.position;
-        myRigidBody.velocity = direction.normalized * speed;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        get
+        {
+            return name;
+        }
+
+     
+    }
+
+    public int MyDamage
+    {
+        get
+        {
+            return damage;
+        }
+
+     
+    }
+
+    public Sprite MyIcon
+    {
+        get
+        {
+            return icon;
+        }
+
+      
+    }
+
+    public float MySpeed
+    {
+        get
+        {
+            return speed;
+        }
+
+    
+    }
+
+    public float MyCastTime
+    {
+        get
+        {
+            return castTime;
+        }
+
+     
+    }
+
+    public GameObject MySpellPrefab
+    {
+        get
+        {
+            return spellPrefab;
+        }
+
+      
+    }
+
+    public Color MyBarColor
+    {
+        get
+        {
+            return barColor;
+        }
+
+     
     }
 }

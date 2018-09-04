@@ -4,33 +4,40 @@ using UnityEngine;
 
 public class Player : Character
 {
-    [SerializeField]
-    private Stat health;
+   
 
     [SerializeField]
     private Stat mana;
 
+    //player's target
+    public Transform MyTarget { get; set; }
 
-
-    
-    private float initHealth = 100; //for adjusting health of player
-
-  
+ 
+      
     private float initMana = 50; //for adjusting mana of player
 
-    [SerializeField]
-    private GameObject[] spellPrefab; //for different spells
+    private SpellBook spellBook;
+
+  
 
     [SerializeField]
     private Transform[] exitPoints; //for adjusting spell exit point from the character prefab staff
 
+    [SerializeField]
+    private Block[] blocks; //line of sight blocker
+
+
     //assigned initially to index 2 as player respawns looking down initially
-    private int exitIndex = 2; //use to assign righ tdirection (will be used for the inputs below)
+    private int exitIndex = 2; //use to assign rigt direction (will be used for the inputs below)
 
     // Use this for initialization
-    protected override void Start () {
-        health.Initialize(initHealth,initHealth);
-        health.Initialize(initMana, initMana);
+    protected override void Start ()
+    {
+        spellBook = GetComponent<SpellBook>();
+      
+        mana.Initialize(initMana, initMana);
+
+       // target = GameObject.Find("Target").transform;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
         base.Start();
@@ -68,7 +75,7 @@ public class Player : Character
             health.MyCurrentValue -= 10;
             mana.MyCurrentValue -= 10;
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             health.MyCurrentValue += 10;
             mana.MyCurrentValue += 10;
@@ -99,37 +106,83 @@ public class Player : Character
             exitIndex = 1;
             direction += Vector2.right;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            //if not attacking and not moving, then the player can attack again
-            if (!isAttacking && !IsMoving)
-            {
-                //coroutine = an action that can be done simoultaenously with other functions
-                attackRoutine = StartCoroutine(Attack());
-            }
-            
-        }
+      
     }
    
     //good for puttign delays
-    private IEnumerator Attack()
+    private IEnumerator Attack(int spellIndex) //spellindex determines which prefab to use
     {
-     
+
+        Transform currentTarget = MyTarget; //Made current Target to prevent player from swapping target mid cast
+        Spell newSpell = spellBook.CastSpelll(spellIndex);
         isAttacking = true;
-        myAnimator.SetBool("attack", true);
-        CastSpell();
-        yield return new WaitForSeconds(2); //cast time hard code
+        myAnimator.SetBool("attack", isAttacking);
+        
+        yield return new WaitForSeconds(newSpell.MyCastTime); //cast time 
+      
+       if (currentTarget != null && InLineOfSight()) //fix for the bug where the player can still hit enemy even out of sight once cast time is activated
+        {
+            SpellScript s = Instantiate(newSpell.MySpellPrefab, exitPoints[exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
+            s.Initialize(currentTarget, newSpell.MyDamage);
+        }
        
         StopAttack();
         
     }
 
-    public void CastSpell()
+    public void CastSpell(int spellIndex)
     {
+
+        Block();
+        //if not attacking and not moving, then the player can attack again
+        if (MyTarget != null && !isAttacking && !IsMoving && InLineOfSight())
+        {
+            //coroutine = an action that can be done simoultaenously with other functions
+            attackRoutine = StartCoroutine(Attack(spellIndex));
+
+        }
         //quaternion = rotation of the prefab
         //instantiate the spell prefab on the position of the exit points which are determined by the inputs
-        Instantiate(spellPrefab[0], exitPoints[exitIndex].position, Quaternion.identity);
+        
        
+    }
+    
+    //draw line of sight that points to targeted enemy
+    private bool InLineOfSight()
+    {
+        if(MyTarget !=null)
+        {
+            Vector3 targetDirection = (MyTarget.transform.position - transform.position).normalized;
+            Debug.DrawRay(transform.position, targetDirection, Color.red);
+
+            //if collider hits block then cant cast spell
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, Vector2.Distance(transform.position, MyTarget.transform.position), 256);
+
+            if (hit.collider == null)
+            {
+                return true;
+            }
+        }
+       
+        return false;
+    }
+
+
+    //method for preventing player to cast spell when not in line of sight
+    private void Block()
+    {
+        foreach(Block i in blocks)
+        {
+            i.Deactivate();
+
+        }
+        blocks[exitIndex].Activate(); //exitIndex keeps track of direction player is facing
+    }
+
+    public override void StopAttack()
+    {
+        spellBook.StopCasting();
+        base.StopAttack();
     }
 
 }

@@ -37,8 +37,12 @@ public class Stat : MonoBehaviour {
             }
             
             currentFill = currentValue / MyMaxValue;
+            if(statValue != null)
+            {
+                statValue.text = currentValue + " / " + MyMaxValue; // for health and mana bar text
+            }
 
-            statValue.text = currentValue + " / " + MyMaxValue; // for health and mana bar text
+            
         }
 
 
@@ -49,23 +53,33 @@ public class Stat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-     MyMaxValue = 100;
+    
         content = GetComponent<Image>();
-       //content.fillAmount = 0.5f;
+      
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (currentFill != content.fillAmount)
-        {
-            content.fillAmount = Mathf.Lerp(content.fillAmount, currentFill, Time.deltaTime * lerpSpeed); //so animation moves equally on all different computers
-        }
+        HandleBar();
 	}
 
     public void Initialize(float currentValue, float maxValue) //initialize health and mana
     {
+        if(content == null)
+        {
+            content = GetComponent<Image>();
+        }
         MyMaxValue = maxValue;
         MyCurrentValue = currentValue;
+        content.fillAmount = MyCurrentValue / MyMaxValue; //fix bug were the health bar of enemies plays a "fill up" animation when switching targets from a dead one to an alive one.
+    }
+
+    private void HandleBar()
+    {
+        if (currentFill != content.fillAmount)
+        {
+            content.fillAmount = Mathf.Lerp(content.fillAmount, currentFill, Time.deltaTime * lerpSpeed); //so animation moves equally on all different computers
+        }
     }
 }
