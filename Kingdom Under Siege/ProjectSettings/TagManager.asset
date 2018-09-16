@@ -8,6 +8,8 @@ TagManager:
   - Rooms
   - Enemy
   - HitBox
+  - Obstacle
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2638948153
     locked: 0

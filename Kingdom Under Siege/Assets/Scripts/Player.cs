@@ -18,8 +18,8 @@ public class Player : Character
 
     private SpellBook spellBook;
 
-  
-
+    private Vector3 min, max;
+    
     [SerializeField]
     private Transform[] exitPoints; //for adjusting spell exit point from the character prefab staff
 
@@ -47,7 +47,10 @@ public class Player : Character
 	protected override void Update () {
         GetInput();
         //health.MyCurrentValue = 100;
-        
+
+        //Camera clamping onto player
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, min.x, max.x), Mathf.Clamp(transform.position.y, min.y, max.y), transform.position.z);
+
         base.Update();  //executes Character.cs update|| base = access inheritance
        
         
@@ -107,6 +110,13 @@ public class Player : Character
             direction += Vector2.right;
         }
       
+    }
+
+    //Set limits of where the player can go
+    public void SetLimits(Vector3 min, Vector3 max)
+    {
+        this.min = min;
+        this.max = max;
     }
    
     //good for puttign delays

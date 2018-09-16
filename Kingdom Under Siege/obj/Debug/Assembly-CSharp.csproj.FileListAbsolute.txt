@@ -334,3 +334,5 @@ C:\Users\Carlisle\Desktop\Game\kus\Kingdom Under Siege\obj\Debug\Assembly-CSharp
 C:\Users\Carlisle\Desktop\Game\kus\Kingdom Under Siege\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Carlisle\Desktop\Game\kus\Kingdom Under Siege\obj\Debug\Assembly-CSharp.dll
 C:\Users\Carlisle\Desktop\Game\kus\Kingdom Under Siege\obj\Debug\Assembly-CSharp.pdb
+C:\Project\Kingdom Under Siege\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Project\Kingdom Under Siege\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
