@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WaterTiles : TileBase
+public class WaterTiles : Tile
 {
     // An array with all the waterTiles that we have
     [SerializeField]

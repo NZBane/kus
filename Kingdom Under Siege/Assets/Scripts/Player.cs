@@ -9,8 +9,6 @@ public class Player : Character
     [SerializeField]
     private Stat mana;
 
-    //player's target
-    public Transform MyTarget { get; set; }
 
  
       
@@ -68,7 +66,7 @@ public class Player : Character
 
 
         //reset direction after every loop
-        direction = Vector2.zero; //Prevents incrementing speed every loop causing player to run faster and faster.
+        Direction = Vector2.zero; //Prevents incrementing speed every loop causing player to run faster and faster.
                                  
         
         ///DEBUGGING ONLY!!!
@@ -92,24 +90,28 @@ public class Player : Character
         if (Input.GetKey(KeyCode.W))
         {
             exitIndex = 0;
-            direction += Vector2.up;
+            Direction += Vector2.up;
         }
         if (Input.GetKey(KeyCode.A))
         {
             exitIndex = 3;
-            direction += Vector2.left;
+            Direction += Vector2.left;
         }
         if (Input.GetKey(KeyCode.S))
         {
             exitIndex = 2;
-            direction += Vector2.down;
+            Direction += Vector2.down;
         }
         if (Input.GetKey(KeyCode.D))
         {
             exitIndex = 1;
-            direction += Vector2.right;
+            Direction += Vector2.right;
         }
-      
+        if (IsMoving)
+        {
+            StopAttack();
+        }
+
     }
 
     //Set limits of where the player can go
@@ -125,15 +127,15 @@ public class Player : Character
 
         Transform currentTarget = MyTarget; //Made current Target to prevent player from swapping target mid cast
         Spell newSpell = spellBook.CastSpelll(spellIndex);
-        isAttacking = true;
-        myAnimator.SetBool("attack", isAttacking);
+        IsAttacking = true;
+        MyAnimator.SetBool("attack", IsAttacking);
         
         yield return new WaitForSeconds(newSpell.MyCastTime); //cast time 
       
        if (currentTarget != null && InLineOfSight()) //fix for the bug where the player can still hit enemy even out of sight once cast time is activated
         {
             SpellScript s = Instantiate(newSpell.MySpellPrefab, exitPoints[exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
-            s.Initialize(currentTarget, newSpell.MyDamage);
+            s.Initialize(currentTarget, newSpell.MyDamage, transform);
         }
        
         StopAttack();
@@ -145,7 +147,7 @@ public class Player : Character
 
         Block();
         //if not attacking and not moving, then the player can attack again
-        if (MyTarget != null && !isAttacking && !IsMoving && InLineOfSight())
+        if (MyTarget != null && MyTarget.GetComponentInParent<Character>().IsAlive && !IsAttacking && !IsMoving && InLineOfSight())
         {
             //coroutine = an action that can be done simoultaenously with other functions
             attackRoutine = StartCoroutine(Attack(spellIndex));
@@ -189,10 +191,18 @@ public class Player : Character
         blocks[exitIndex].Activate(); //exitIndex keeps track of direction player is facing
     }
 
-    public override void StopAttack()
+
+    public void StopAttack()
     {
         spellBook.StopCasting();
-        base.StopAttack();
+        IsAttacking = false;
+        MyAnimator.SetBool("attack", IsAttacking);
+        if (attackRoutine != null)
+        {
+            StopCoroutine(attackRoutine);
+
+        }
+
     }
 
 }

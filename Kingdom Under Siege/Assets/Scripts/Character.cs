@@ -9,10 +9,20 @@ public abstract class Character : MonoBehaviour {
 
     [SerializeField]
     private float speed;
-    protected Animator myAnimator;
-    protected Vector2 direction; //protected = similar to private but allows inheritance access
+
+
+  
+
+    public Animator MyAnimator { get; set; }
+
+    private Vector2 direction; //protected = similar to private but allows inheritance access
     private Rigidbody2D myRigidbody;
-    protected bool isAttacking = false;
+
+    
+
+    public bool IsAttacking { get; set; }
+
+
     protected Coroutine attackRoutine;
     [SerializeField]
     protected Transform hitBox;
@@ -23,20 +33,57 @@ public abstract class Character : MonoBehaviour {
     {
         get { return health; }
     }
+
     [SerializeField]
     private float initHealth; //for adjusting health of player
+
+    public Transform MyTarget { get; set; }
     public bool IsMoving
     {
         get
         {
-            return direction.x != 0 || direction.y != 0;
+            return Direction.x != 0 || Direction.y != 0;
+        }
+    }
+
+    public Vector2 Direction
+    {
+        get
+        {
+            return direction;
+        }
+
+        set
+        {
+            direction = value;
+        }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+
+        set
+        {
+            speed = value;
+        }
+    }
+
+    public bool IsAlive //boolean for checking if alive
+    {
+        get
+        {
+           return health.MyCurrentValue > 0;
         }
     }
     // Use this for initialization
-   protected virtual void Start () {
+    protected virtual void Start () {
         health.Initialize(initHealth, initHealth);
         myRigidbody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>(); //access Unity Animator Component
+        MyAnimator = GetComponent<Animator>(); //access Unity Animator Component
 		
 	}
 	
@@ -55,64 +102,68 @@ public abstract class Character : MonoBehaviour {
 
     public void Move()
     {
-        //delta time = time that has pass after update (good for optimization)
-        //transform.Translate(direction * speed * Time.deltaTime);
-        //move player
-        //.normalized = returns direction as a unit vector (prevents character from moving twice the speed when two buttons are pressed)
-        myRigidbody.velocity = direction.normalized * speed;
+        if(IsAlive)
+        {
+            //delta time = time that has pass after update (good for optimization)
+            //transform.Translate(direction * speed * Time.deltaTime);
+            //move player
+            //.normalized = returns direction as a unit vector (prevents character from moving twice the speed when two buttons are pressed)
+            myRigidbody.velocity = Direction.normalized * Speed;
+
+        }
 
 
     }
 
     public void HandleLayers()
     {
-        //if player is moving = do the animation
-        if (IsMoving)
+        if(IsAlive)
         {
-         
-            ActivateLayer("Walk Layer"); //layer weight use to show specific layers the higher the weight
-            myAnimator.SetFloat("x", direction.x);
-            myAnimator.SetFloat("y", direction.y);
-            StopAttack();
+            //if player is moving = do the animation
+            if (IsMoving)
+            {
+
+                ActivateLayer("Walk Layer"); //layer weight use to show specific layers the higher the weight
+                MyAnimator.SetFloat("x", Direction.x);
+                MyAnimator.SetFloat("y", Direction.y);
+
+            }
+            else if (IsAttacking)
+            {
+                ActivateLayer("Attack Layer");
+            }
+            //else if not moving = set layer weight of layer 1 to 0 (to show idle)
+            else
+            {
+                ActivateLayer("Idle Layer"); //layer weight use to show specific layers the higher the weight
+            }
         }
-        else if (isAttacking)
-        {
-            ActivateLayer("Attack Layer");
-        }
-        //else if not moving = set layer weight of layer 1 to 0 (to show idle)
         else
         {
-            ActivateLayer("Idle Layer"); //layer weight use to show specific layers the higher the weight
+            ActivateLayer("Death Layer"); //actiavte layer if not alive
         }
+      
     }
    
     public void ActivateLayer(string layerName)
     {
-        for(int i = 0; i < myAnimator.layerCount; i++)
+        for(int i = 0; i < MyAnimator.layerCount; i++)
         {
-            myAnimator.SetLayerWeight(i, 0);
+            MyAnimator.SetLayerWeight(i, 0);
         }
-        myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName),1);
+        MyAnimator.SetLayerWeight(MyAnimator.GetLayerIndex(layerName),1);
     }
     
-    public virtual void StopAttack()
+    public virtual void TakeDamage(float damage, Transform source)
     {
-        isAttacking = false;
-        myAnimator.SetBool("attack", isAttacking);
-        if (attackRoutine != null)
-        {
-            StopCoroutine(attackRoutine);
-          
-        }
-        
-    }
-    public virtual void TakeDamage(float damage)
-    {
+    
         //decrement health
         health.MyCurrentValue -= damage;
         if (health.MyCurrentValue <= 0)
         {
-            myAnimator.SetTrigger("die");
+            Direction = Vector2.zero;
+            myRigidbody.velocity = Direction;
+            MyAnimator.SetTrigger("die");
             //character dies
         }
         

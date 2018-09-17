@@ -12,6 +12,7 @@ public class SpellScript : MonoBehaviour {
     
     public Transform MyTarget { get; private set; } //allows targeting of different enemies
 
+    private Transform source;
   
 
 	// Use this for initialization
@@ -22,10 +23,11 @@ public class SpellScript : MonoBehaviour {
 
 	}
 
-    public void Initialize(Transform target, int damage)
+    public void Initialize(Transform target, int damage, Transform source)
     {
         this.MyTarget = target;
         this.damage = damage;
+        this.source = source;
     }
 	
     
@@ -53,8 +55,9 @@ public class SpellScript : MonoBehaviour {
     {
         if (collision.tag == "HitBox" && collision.transform == MyTarget) //collison.transform fixes the bug were wrong target is hit //if collides with object wiith hitbox tag and is on the MyTarget position
         {
+            Character c = collision.GetComponentInParent<Character>();
             speed = 0;
-           collision.GetComponentInParent<Enemy>().TakeDamage(damage); //if it hits this object = get parent component
+            c.TakeDamage(damage, source);
             GetComponent<Animator>().SetTrigger("Impact");
             myRigidBody.velocity = Vector2.zero;
             MyTarget = null; 
