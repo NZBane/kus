@@ -6,9 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class WaterTiles : TileBase
 {
-    /// <summary>
-    /// An array with all the waterTiles that we have in our game
-    /// </summary>
+    // An array with all the waterTiles that we have
     [SerializeField]
     private Sprite[] waterSprites;
 
@@ -21,11 +19,7 @@ public class WaterTiles : TileBase
         return base.StartUp(position, tilemap, go);
     }
 
-    /// <summary>
-    /// Refreshes this tile when something changes
-    /// </summary>
-    /// <param name="position">The tiles position in the grid</param>
-    /// <param name="tilemap">A reference to the tilemap that this tile belongs to.</param>
+    // Refreshes this tile when something changes
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
        
@@ -46,12 +40,7 @@ public class WaterTiles : TileBase
 
     }
 
-    /// <summary>
-    /// Changes the tiles sprite to the correct sprites based on the situation
-    /// </summary>
-    /// <param name="location">The location of this sprite</param>
-    /// <param name="tilemap">A reference to the tilemap, that this tile belongs to</param>
-    /// <param name="tileData">A reference to the actual object, that this tile belongs to</param>
+    // Changes the tiles sprite to the correct sprites based on the situation
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
       
@@ -74,13 +63,11 @@ public class WaterTiles : TileBase
                     {
                         composition += 'E';
                     }
-
-
                 }
             }
         }
 
-        ///Selects a random tile for the water
+        //Selects a random tile for the water
         int randomVal = Random.Range(0, 100);
 
         if (randomVal < 15)
@@ -291,7 +278,7 @@ public class WaterTiles : TileBase
         return tilemap.GetTile(position) == this;
     }
 
-
+    //Creates the watertiles
 #if UNITY_EDITOR
     [MenuItem("Assets/Create/Tiles/WaterTile")]
     public static void CreateWaterTile()

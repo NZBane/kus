@@ -6,23 +6,24 @@ using UnityEngine.U2D;
 
 public class LevelManager : MonoBehaviour {
 
+    //A parent transform for our map
     [SerializeField]
     private Transform map;
-
+    //Map data for all the map layers
     [SerializeField]
     private Texture2D[] mapData;
-
+    //Map element represents a tile created in the game
     [SerializeField]
     private MapElement[] mapElements;
-
+    //This tile is used to measure distance between tiles
     [SerializeField]
     private Sprite defaultTile;
-
+    //Dictionary for all water tiles
     private Dictionary<Point, GameObject> waterTiles = new Dictionary<Point, GameObject>();
-
+    //An atlas containing all our water tiles
     [SerializeField]
     private SpriteAtlas waterAtlas;
-
+    //Position of the bottom left of screen
     private Vector3 WorldStartPos
     {
         get
@@ -42,23 +43,23 @@ public class LevelManager : MonoBehaviour {
     {
 
     }
-
+    //Generates the map
     private void GenerateMap()
     {
         int height = mapData[0].height;
         int width = mapData[0].width;
 
-        for (int i = 0; i < mapData.Length; i++)
+        for (int i = 0; i < mapData.Length; i++) //looks through all the map layers
         {
-            for (int x = 0; x < mapData[i].width; x++)
+            for (int x = 0; x < mapData[i].width; x++) // Runs through all the pixels on the layer
             {
                 for (int y = 0; y < mapData[i].height; y++)
                 {
-                    Color c = mapData[i].GetPixel(x, y);
-
+                    Color c = mapData[i].GetPixel(x, y); //Gets the color of the current pixel
+                    //Checks if we have a tile that suits the color
                     MapElement newElement = Array.Find(mapElements, e => e.MyColor == c);
 
-                    if (newElement != null)
+                    if (newElement != null) //if we find an element with the correct color
                     {
                         //calculates x and y position of the tile
                         float xPos = WorldStartPos.x + (defaultTile.bounds.size.x * x);
@@ -74,7 +75,7 @@ public class LevelManager : MonoBehaviour {
                         {
                             waterTiles.Add(new Point(x, y), go);
                         }
-
+                        //checks if we are placing a tree
                         if (newElement.TileTag == "Tree")
                         {
                             go.GetComponent<SpriteRenderer>().sortingOrder = height * 2 - y * 2;
@@ -89,7 +90,7 @@ public class LevelManager : MonoBehaviour {
         }
         CheckWater();
     }
-
+    //Checks all tiles around each water tile, so we get the correct one
     private void CheckWater()
     {
         foreach(KeyValuePair<Point,GameObject> tile in waterTiles)
@@ -195,22 +196,23 @@ public class LevelManager : MonoBehaviour {
             }
         }
     }
-
+    //Checks all neighbours of each tile
     public string TileCheck(Point currentPoint)
     {
         string composition = string.Empty;
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -1; x <= 1; x++) //runs through all neighbours
         {
             for (int y = -1; y <= 1; y++)
             {
-                if (x != 0 || y != 0)
+                if (x != 0 || y != 0) //Make sure we arent checking ourself
                 {
+                    //If its a water tile
                     if(waterTiles.ContainsKey(new Point(currentPoint.MyX+x, currentPoint.MyY+y)))
                     {
                         composition += 'W';
                     }
-                    else
+                    else //else we assume it is empty
                     {
                         composition += 'E';
                     }
@@ -227,15 +229,16 @@ public class LevelManager : MonoBehaviour {
 [Serializable]
 public class MapElement
 {
+    //Used to check what tile we are placing
     [SerializeField]
     private string tileTag;
-
+    //This is used to compare tile with colors on the map layers
     [SerializeField]
     private Color color;
-
+    //Prefab that we use to spawn the tile 
     [SerializeField]
     private GameObject elementPrefab;
-
+    //Property for accessing the prefab
     public GameObject MyElementPrefab
     {
         get
@@ -243,7 +246,7 @@ public class MapElement
             return elementPrefab;
         }
     }
-
+    //Property for accessing the color
     public Color MyColor
     {
         get
@@ -251,7 +254,7 @@ public class MapElement
             return color;
         }
     }
-
+    //Property for accessing the tag
     public string TileTag
     {
         get
@@ -260,7 +263,7 @@ public class MapElement
         }
     }
 }
-
+//Struct for determing grid positions
 public struct Point
 {
     public int MyX { get; set; }

@@ -14,7 +14,7 @@ public class TreeTile : Tile
         return base.StartUp(position, tilemap, go);
     }
 
-
+    //Creates the treefile
 #if UNITY_EDITOR
     [MenuItem("Assets/Create/Tiles/TreeTile")]
     public static void CreateWaterTile()
