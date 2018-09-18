@@ -10,6 +10,7 @@ TagManager:
   - HitBox
   - Obstacle
   - Water
+  - keybind
   layers:
   - Default
   - TransparentFX
