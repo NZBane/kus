@@ -28,7 +28,6 @@ public class Player : Character
       
     private float initMana = 50; //for adjusting mana of player
 
-    private SpellBook spellBook;
 
     private Vector3 min, max;
     
@@ -45,7 +44,6 @@ public class Player : Character
     // Use this for initialization
     protected override void Start ()
     {
-        spellBook = GetComponent<SpellBook>();
       
         mana.Initialize(initMana, initMana);
 
@@ -150,7 +148,7 @@ public class Player : Character
     {
 
         Transform currentTarget = MyTarget; //Made current Target to prevent player from swapping target mid cast
-        Spell newSpell = spellBook.CastSpelll(spellName);
+        Spell newSpell = SpellBook.MyInstance.CastSpelll(spellName);
         IsAttacking = true;
         MyAnimator.SetBool("attack", IsAttacking);
         
@@ -218,7 +216,7 @@ public class Player : Character
 
     public void StopAttack()
     {
-        spellBook.StopCasting();
+        SpellBook.MyInstance.StopCasting();
         IsAttacking = false;
         MyAnimator.SetBool("attack", IsAttacking);
         if (attackRoutine != null)

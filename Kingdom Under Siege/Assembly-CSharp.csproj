@@ -59,6 +59,7 @@
      <Compile Include="Assets\DungeonGen\DungeonScript\RoomTemplates.cs" />
      <Compile Include="Assets\Scripts\Buttons\ActionButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\IUseable.cs" />
+     <Compile Include="Assets\Scripts\Buttons\SpellButton.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Block.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Character.cs" />
@@ -83,6 +84,8 @@
      <Compile Include="Assets\Scripts\Spells\SpellScript.cs" />
      <Compile Include="Assets\Scripts\TileScripts\TreeTile.cs" />
      <Compile Include="Assets\Scripts\TileScripts\WaterTile.cs" />
+     <Compile Include="Assets\Scripts\UIRelated\HandScript.cs" />
+     <Compile Include="Assets\Scripts\UIRelated\IMoveable.cs" />
      <Compile Include="Assets\Sprites\TileScripts\WaterTile.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Carlisle/Desktop/Game/kus/Kingdom Under Siege/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

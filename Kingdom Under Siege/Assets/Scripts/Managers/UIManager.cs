@@ -39,6 +39,9 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private CanvasGroup keybindMenu;
 
+    [SerializeField]
+    private CanvasGroup spellBook;
+
     private GameObject[] keybindButtons;
     private void Awake()
     {
@@ -50,9 +53,7 @@ public class UIManager : MonoBehaviour {
     {
         
         healthStat = targetFrame.GetComponentInChildren<Stat>();//reference child component Stat from the unity heirarchy (an alternate from making it public
-        SetUseable(actionButtons[0], SpellBook.MyInstance.GetSpell("fireBall"));
-        SetUseable(actionButtons[1], SpellBook.MyInstance.GetSpell("frostOrb"));
-        SetUseable(actionButtons[2], SpellBook.MyInstance.GetSpell("lightningBolt"));
+        
     }
 	
 	// Update is called once per frame
@@ -61,7 +62,11 @@ public class UIManager : MonoBehaviour {
 	
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OpenCloseMenu();
+            OpenClose(keybindMenu);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OpenClose(spellBook);
         }
     }
 
@@ -88,13 +93,10 @@ public class UIManager : MonoBehaviour {
         healthStat.MyCurrentValue = health;
     }
 
-    public void OpenCloseMenu()
-    {
-        keybindMenu.alpha = keybindMenu.alpha > 0 ? 0 : 1; //if alpha is more than 0 = then alpha is set to 0 else go back to 1
-        keybindMenu.blocksRaycasts = keybindMenu.blocksRaycasts == true ? false : true;
-        Time.timeScale = Time.timeScale > 0 ? 0 : 1; //pause the game
+   
+       // Time.timeScale = Time.timeScale > 0 ? 0 : 1; //pause the game
 
-    }
+    
     public void UpdateKeyText(string key, KeyCode code)
     {
         Text tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<Text>();
@@ -106,10 +108,10 @@ public class UIManager : MonoBehaviour {
         Array.Find(actionButtons, x => x.gameObject.name == buttonName).MyButton.onClick.Invoke();
     }
 
-    public void SetUseable(ActionButton btn, IUseable useable)
+ 
+    public void OpenClose(CanvasGroup canvasGroup)
     {
-        btn.MyButton.image.sprite = useable.MyIcon;
-        btn.MyButton.image.color = Color.white;
-        btn.MyUseable = useable;
+        canvasGroup.alpha = canvasGroup.alpha > 0 ? 0 : 1; //if alpha is more than 0 = then alpha is set to 0 else go back to 1
+        canvasGroup.blocksRaycasts = canvasGroup.blocksRaycasts == true ? false : true;
     }
 }
