@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Water
   - keybind
+  - SwordCollider
   layers:
   - Default
   - TransparentFX

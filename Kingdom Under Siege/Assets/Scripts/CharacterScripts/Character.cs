@@ -10,8 +10,9 @@ public abstract class Character : MonoBehaviour {
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private CircleCollider2D SwordCollider;
 
-  
 
     public Animator MyAnimator { get; set; }
 
@@ -163,9 +164,24 @@ public abstract class Character : MonoBehaviour {
         {
             Direction = Vector2.zero;
             myRigidbody.velocity = Direction;
-            MyAnimator.SetTrigger("die");
+           MyAnimator.SetTrigger("die");
+            SwordCollider.enabled = false;
             //character dies
         }
         
     }
+
+    public void MeleeAttack()
+    {
+        //SwordCollider.enabled = !SwordCollider.enabled;
+        SwordCollider.enabled = true;
+
+    }
+
+    //run by enemy attack behaviour (fixes bug where enemy damages player even if not playing attack animation (also turned off trigger on sword collider object attached to enemy)
+    public void CancelAttack()
+    {
+        SwordCollider.enabled = false;
+    }
+
 }

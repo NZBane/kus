@@ -213,6 +213,26 @@ public class Player : Character
         blocks[exitIndex].Activate(); //exitIndex keeps track of direction player is facing
     }
 
+    public virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "SwordCollider")
+        {
+
+            health.MyCurrentValue -= 5;
+            if (health.MyCurrentValue <= 0)
+            {
+                Direction = Vector2.zero;
+
+             MyAnimator.SetTrigger("die");
+
+              //  Application.Quit(); //works
+                //////////////////INSERT GAME OVER SCENE HERE!!!!!!!!!//////////////////////////////(but since enemy is using this, it will also trigger this event when enemy dies)
+                //character dies
+            }
+        }
+
+    }
+
 
     public void StopAttack()
     {
