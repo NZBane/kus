@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Quality {Common, Uncommon, Rare, Epic}
+
 
 public abstract class Item : ScriptableObject, IMoveable, IDescribable
 {
@@ -49,27 +49,33 @@ public abstract class Item : ScriptableObject, IMoveable, IDescribable
             slot = value;
         }
     }
+
+    public Quality MyQuality
+    {
+        get
+        {
+            return quality;
+        }
+
+    
+    }
+
+    public string MyTitle
+    {
+        get
+        {
+            return title;
+        }
+
+      
+    }
+
     //Returns the description of the item
     public virtual string GetDescription()
     {
-        string color = string.Empty;
-
-        switch (quality)
-        {
-            case Quality.Common:
-                color = "#515551";
-                break;
-            case Quality.Uncommon:
-                color = "#0ac404";
-                break;
-            case Quality.Rare:
-                color = "#0588c5";
-                break;
-            case Quality.Epic:
-                color = "#1f04ba";
-                break;
-        }
-        return string.Format("<color={0}>{1}</color>", color, title);
+        
+        
+        return string.Format("<color={0}>{1}</color>", QualityColor.MyColors[MyQuality], MyTitle);
     }
     //Removes item from the inventory
     public void Remove()

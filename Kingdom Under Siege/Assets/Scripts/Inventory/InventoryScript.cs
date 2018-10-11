@@ -116,6 +116,14 @@ public class InventoryScript : MonoBehaviour
             HealthPotion potion = (HealthPotion)Instantiate(items[1]);
             AddItem(potion);
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+           
+            AddItem((Armor)Instantiate(items[2]));
+            AddItem((Armor)Instantiate(items[3]));
+            AddItem((Armor)Instantiate(items[4]));
+            AddItem((Armor)Instantiate(items[5]));
+        }
     }
     //Adds a bag to the inventory
     public void AddBag(Bag bag)
@@ -145,16 +153,16 @@ public class InventoryScript : MonoBehaviour
         Destroy(bag.MyBagScript.gameObject);
     }
     //Adds an item to the inventory
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
         if (item.MyStackSize > 0)
         {
             if (PlaceInStack(item))
             {
-                return;
+                return true;
             }
         }
-        PlaceInEmpty(item);
+       return PlaceInEmpty(item);
     }
 
     public void SwapBags(Bag oldBag, Bag newBag)
@@ -184,16 +192,17 @@ public class InventoryScript : MonoBehaviour
         }
     }
     //Places item on an empty slot
-    public void PlaceInEmpty(Item item)
+    public bool PlaceInEmpty(Item item)
     {
         foreach (Bag bag in bags)
         {
             if (bag.MyBagScript.AddItem(item))
             {
                 OnItemCountChanged(item);
-                return;
+                return true;
             }
         }
+        return false;
     }
     //Trys to stack and item onto another item
     private bool PlaceInStack(Item item)

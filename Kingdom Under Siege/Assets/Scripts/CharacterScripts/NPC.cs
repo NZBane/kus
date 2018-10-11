@@ -54,4 +54,9 @@ public class NPC : Character
         }
         Destroy(gameObject);
     }
+
+    public virtual void Interact()
+    {
+        Debug.Log("this will open a dialogue with the NPC");
+    }
 }

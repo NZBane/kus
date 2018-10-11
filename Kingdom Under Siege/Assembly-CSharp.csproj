@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Buttons\ActionButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\BagButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\IUseable.cs" />
+     <Compile Include="Assets\Scripts\Buttons\LootButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\SpellButton.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Block.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\CameraFollow.cs" />
@@ -79,10 +80,14 @@
      <Compile Include="Assets\Scripts\EnviroScripts\Obstacle.cs" />
      <Compile Include="Assets\Scripts\Inventory\BagScript.cs" />
      <Compile Include="Assets\Scripts\Inventory\InventoryScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Loot.cs" />
+     <Compile Include="Assets\Scripts\Inventory\LootTable.cs" />
      <Compile Include="Assets\Scripts\Inventory\SlotScript.cs" />
+     <Compile Include="Assets\Scripts\Items\Armor.cs" />
      <Compile Include="Assets\Scripts\Items\Bag.cs" />
      <Compile Include="Assets\Scripts\Items\HealthPotion.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\QualityColor.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\KeybindManager.cs" />
      <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
@@ -96,6 +101,7 @@
      <Compile Include="Assets\Scripts\UIRelated\IClickable.cs" />
      <Compile Include="Assets\Scripts\UIRelated\IDescribable.cs" />
      <Compile Include="Assets\Scripts\UIRelated\IMoveable.cs" />
+     <Compile Include="Assets\Scripts\UIRelated\LootWindow.cs" />
      <Compile Include="Assets\Scripts\UIRelated\ObservableStack.cs" />
      <Compile Include="Assets\Sprites\TileScripts\WaterTile.cs" />
  <Reference Include="UnityEditor.StandardEvents">
