@@ -36,6 +36,9 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private GameObject tooltip;
 
+    [SerializeField]
+    private CharacterPanel charPanel;
+
     private Text toolTipText;
     //Reference to the keybind menu
     [SerializeField]
@@ -72,6 +75,10 @@ public class UIManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.B))
         {
             InventoryScript.MyInstance.OpenClose();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            charPanel.OpenClose();
         }
     }
 
