@@ -37,6 +37,9 @@ public class UIManager : MonoBehaviour {
     private GameObject tooltip;
 
     [SerializeField]
+    private RectTransform tooltipRect;
+
+    [SerializeField]
     private CharacterPanel charPanel;
 
     private Text toolTipText;
@@ -144,8 +147,9 @@ public class UIManager : MonoBehaviour {
         }
     }
     //Shows the tooltip
-    public void ShowToolTip(Vector3 position, IDescribable desription)
+    public void ShowToolTip(Vector2 pivot, Vector3 position, IDescribable desription)
     {
+        tooltipRect.pivot = pivot;
         tooltip.SetActive(true);
         tooltip.transform.position = position;
         toolTipText.text = desription.GetDescription();
@@ -154,5 +158,10 @@ public class UIManager : MonoBehaviour {
     public void HideToolTip()
     {
         tooltip.SetActive(false);
+    }
+
+    public void RefreshTooltip(IDescribable description)
+    {
+        toolTipText.text = description.GetDescription();
     }
 }

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e3910b057bf9c84294a07829d2c1e6d, type: 3}
-  m_Name: Sword
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: d021a02b203005642a5285f92382dd4f, type: 3}
+  icon: {fileID: 21300000, guid: 5e440f25007a81e45901a176074acdcc, type: 3}
   stackSize: 0
-  title: God's Wooden Stick
+  title: Medusa's Rack
   quality: 3
-  armorType: 5
-  intellect: 100
+  armorType: 2
+  intellect: 35
   strength: 0
-  stamina: 0
+  stamina: 35

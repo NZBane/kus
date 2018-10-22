@@ -60,6 +60,7 @@
      <Compile Include="Assets\DungeonGen\DungeonScript\RoomTemplates.cs" />
      <Compile Include="Assets\Scripts\Buttons\ActionButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\BagButton.cs" />
+     <Compile Include="Assets\Scripts\Buttons\CharButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\IUseable.cs" />
      <Compile Include="Assets\Scripts\Buttons\LootButton.cs" />
      <Compile Include="Assets\Scripts\Buttons\SpellButton.cs" />

@@ -147,12 +147,25 @@ public class SlotScript : MonoBehaviour, IPointerClickHandler, IClickable, IPoin
         {
             if (InventoryScript.MyInstance.FromSlot == null && !IsEmpty)//if we dont have something to move
             {
-                if (HandScript.MyInstance.MyMoveable != null && HandScript.MyInstance.MyMoveable is Bag)
+                if (HandScript.MyInstance.MyMoveable != null)
                 {
-                    if (MyItem is Bag)
+                    if (HandScript.MyInstance.MyMoveable is Bag)
                     {
-                        InventoryScript.MyInstance.SwapBags(HandScript.MyInstance.MyMoveable as Bag, MyItem as Bag);
+                        if (MyItem is Bag)
+                        {
+                            InventoryScript.MyInstance.SwapBags(HandScript.MyInstance.MyMoveable as Bag, MyItem as Bag);
+                        }
                     }
+                    else if (HandScript.MyInstance.MyMoveable is Armor)
+                    {
+                        if (MyItem is Armor && (MyItem as Armor).MyArmorType == (HandScript.MyInstance.MyMoveable as Armor).MyArmorType)
+                        {
+                            (MyItem as Armor).Equip();
+                           // UIManager.MyInstance.RefreshTooltip();
+                            HandScript.MyInstance.Drop();
+                        }
+                    }
+                    
                 }
                 else
                 {
@@ -160,18 +173,29 @@ public class SlotScript : MonoBehaviour, IPointerClickHandler, IClickable, IPoin
                     InventoryScript.MyInstance.FromSlot = this;
                 }
             }
-            else if (InventoryScript.MyInstance.FromSlot == null && IsEmpty && (HandScript.MyInstance.MyMoveable is Bag))
+            else if (InventoryScript.MyInstance.FromSlot == null && IsEmpty)
             {
-                //Dequips a bag from the inventory
-                Bag bag = (Bag)HandScript.MyInstance.MyMoveable;
-
-                if (bag.MyBagScript != MyBag && InventoryScript.MyInstance.MyEmptySlotCount - bag.Slots > 0)
+                if (HandScript.MyInstance.MyMoveable is Bag)
                 {
-                    AddItem(bag);
-                    bag.MyBagButton.RemoveBag();
+                    //Dequips a bag from the inventory
+                    Bag bag = (Bag)HandScript.MyInstance.MyMoveable;
+
+                    if (bag.MyBagScript != MyBag && InventoryScript.MyInstance.MyEmptySlotCount - bag.Slots > 0)
+                    {
+                        AddItem(bag);
+                        bag.MyBagButton.RemoveBag();
+                       
+                    }
+                }
+               else if (HandScript.MyInstance.MyMoveable is Bag)
+                {
+                    Armor armor = (Armor)HandScript.MyInstance.MyMoveable;
+                    AddItem(armor);
+                    CharacterPanel.MyInstance.MySelectedButton.DequipArmor();
                     HandScript.MyInstance.Drop();
                 }
             }
+            
             else if (InventoryScript.MyInstance.FromSlot!= null)//if we have something to move
             {
                 if (PutItemBack() || MergeItems(InventoryScript.MyInstance.FromSlot) || SwapItems(InventoryScript.MyInstance.FromSlot) || AddItems(InventoryScript.MyInstance.FromSlot.items))
@@ -181,7 +205,7 @@ public class SlotScript : MonoBehaviour, IPointerClickHandler, IClickable, IPoin
                 }
             }
         }
-        if (eventData.button == PointerEventData.InputButton.Right)//when we right click on the slot
+        if (eventData.button == PointerEventData.InputButton.Right && HandScript.MyInstance.MyMoveable == null)//when we right click on the slot
         {
             UseItem();//uses the item we clicked
         }
@@ -192,6 +216,10 @@ public class SlotScript : MonoBehaviour, IPointerClickHandler, IClickable, IPoin
         if(MyItem is IUseable)
         {
             (MyItem as IUseable).Use();
+        }
+        else if(MyItem is Armor)
+        {
+            (MyItem as Armor).Equip();
         }
     }
     //Stacks two items
@@ -269,7 +297,7 @@ public class SlotScript : MonoBehaviour, IPointerClickHandler, IClickable, IPoin
         //Show tooltip
         if (!IsEmpty)
         {
-            UIManager.MyInstance.ShowToolTip(transform.position, MyItem);
+            UIManager.MyInstance.ShowToolTip(new Vector2(1,0), transform.position, MyItem);
         }
     }
 
