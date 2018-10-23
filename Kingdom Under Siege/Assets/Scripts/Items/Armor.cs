@@ -15,6 +15,8 @@ public class Armor : Item
     private int strength;
     [SerializeField]
     private int stamina;
+    [SerializeField]
+    private AnimationClip[] animationClips;
 
     internal ArmorType MyArmorType
     {
@@ -24,6 +26,15 @@ public class Armor : Item
         }
 
       
+    }
+
+    public AnimationClip[] MyAnimationClips
+    {
+        get
+        {
+            return animationClips;
+        }
+
     }
 
     public override string GetDescription()

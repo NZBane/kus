@@ -102,9 +102,10 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler, IClickable, IPo
         }
         else
         {
+            useables.Clear(); //fix bug where items and spells can be overlapped on the skill slots
             this.MyUseable = useable;
         }
-
+        count = useables.Count;
         UpdateVisual();
     }
     //Updates the visual on the actionbutton
@@ -116,6 +117,10 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler, IClickable, IPo
         if (count > 1)
         {
             UIManager.MyInstance.UpdateStackSize(this);
+        }
+        else if (MyUseable is Spell)
+        {
+            UIManager.MyInstance.ClearStackCount(this);
         }
     }
 

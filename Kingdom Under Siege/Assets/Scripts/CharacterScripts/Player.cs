@@ -30,6 +30,9 @@ public class Player : Character
 
 
     private Vector3 min, max;
+
+    [SerializeField]
+    private GearSocket[] gearSockets;
     
     [SerializeField]
     private Transform[] exitPoints; //for adjusting spell exit point from the character prefab staff
@@ -151,7 +154,10 @@ public class Player : Character
         Spell newSpell = SpellBook.MyInstance.CastSpelll(spellName);
         IsAttacking = true;
         MyAnimator.SetBool("attack", IsAttacking);
-        
+        foreach (GearSocket g in gearSockets)
+        {
+            g.MyAnimator.SetBool("attack", IsAttacking);
+        }
         yield return new WaitForSeconds(newSpell.MyCastTime); //cast time 
       
        if (currentTarget != null && InLineOfSight()) //fix for the bug where the player can still hit enemy even out of sight once cast time is activated
@@ -239,6 +245,11 @@ public class Player : Character
         SpellBook.MyInstance.StopCasting();
         IsAttacking = false;
         MyAnimator.SetBool("attack", IsAttacking);
+
+        foreach (GearSocket g in gearSockets)
+        {
+            g.MyAnimator.SetBool("attack", IsAttacking);
+        }
         if (attackRoutine != null)
         {
             StopCoroutine(attackRoutine);
@@ -247,6 +258,25 @@ public class Player : Character
 
     }
 
-    
+    public override void HandleLayers()
+    {
+        base.HandleLayers();
+        if (IsMoving)
+        {
+            foreach (GearSocket g in gearSockets)
+            {
+                g.SetXAndY(Direction.x, Direction.y);
+            }
+        }
+    }
+
+    public override void ActivateLayer(string layerName)
+    {
+        base.ActivateLayer(layerName);
+        foreach (GearSocket g  in gearSockets)
+        {
+            g.ActivateLayer(layerName);
+        }
+    }
 
 }

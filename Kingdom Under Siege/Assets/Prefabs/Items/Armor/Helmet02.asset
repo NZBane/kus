@@ -19,3 +19,16 @@ MonoBehaviour:
   intellect: 50
   strength: 20
   stamina: 50
+  animationClips:
+  - {fileID: 7400000, guid: 375646fca8b553044b9f92f78faf8078, type: 2}
+  - {fileID: 7400000, guid: 0e0ca5d022c81ed49b9b41a316f07f41, type: 2}
+  - {fileID: 7400000, guid: 35539b10d6bf8bb4491ca6c447694f1f, type: 2}
+  - {fileID: 7400000, guid: ccd5d3293f309d54296fb85b786cfde4, type: 2}
+  - {fileID: 7400000, guid: 0d4fb2cc45aaf2b4cabbe0628503769f, type: 2}
+  - {fileID: 7400000, guid: c44f793c9c463034c9bdf6091f36e8b5, type: 2}
+  - {fileID: 7400000, guid: fd68a6406f372384d98550b41c472991, type: 2}
+  - {fileID: 7400000, guid: 58ecefe47f9dc9b42bb2071308bdcc6d, type: 2}
+  - {fileID: 7400000, guid: 308ca72243fa7734f9f3cdce5ffbe457, type: 2}
+  - {fileID: 7400000, guid: 79c83a35574de7949a1fe58b25d3243e, type: 2}
+  - {fileID: 7400000, guid: 72b7f5a479d63304e9df64f1fe833950, type: 2}
+  - {fileID: 7400000, guid: 17d478560f1bd764391f2fe5e1905f8b, type: 2}

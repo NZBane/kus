@@ -68,11 +68,13 @@
      <Compile Include="Assets\Scripts\CharacterScripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Character.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\GearSocket.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\LayerSorter.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\NPC.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Player.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Range.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Stat.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\WeaponSocket.cs" />
      <Compile Include="Assets\Scripts\EnemyStates\AttackState.cs" />
      <Compile Include="Assets\Scripts\EnemyStates\EvadeState.cs" />
      <Compile Include="Assets\Scripts\EnemyStates\FollowState.cs" />

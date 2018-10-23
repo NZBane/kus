@@ -116,7 +116,7 @@ public abstract class Character : MonoBehaviour {
 
     }
 
-    public void HandleLayers()
+    public virtual void HandleLayers()
     {
         if(IsAlive)
         {
@@ -146,7 +146,7 @@ public abstract class Character : MonoBehaviour {
       
     }
    
-    public void ActivateLayer(string layerName)
+    public virtual void ActivateLayer(string layerName)
     {
         for(int i = 0; i < MyAnimator.layerCount; i++)
         {
