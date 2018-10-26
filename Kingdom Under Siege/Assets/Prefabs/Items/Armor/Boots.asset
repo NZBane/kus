@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3910b057bf9c84294a07829d2c1e6d, type: 3}
   m_Name: Boots
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 8c5094113bacf5e469865b8e04f797b1, type: 3}
+  icon: {fileID: 21300000, guid: 2c7c377dd975baf4194211001b33816d, type: 3}
   stackSize: 0
-  title: Boots of John Wick
+  title: Shoes of John Wick
   quality: 3
   armorType: 5
   intellect: 500

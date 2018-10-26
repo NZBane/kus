@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3910b057bf9c84294a07829d2c1e6d, type: 3}
   m_Name: Helmet02
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: c3892e2d0cc697e4f8795a752c318968, type: 3}
+  icon: {fileID: 21300000, guid: 64a4c6ad820a95f489892ef0935cd147, type: 3}
   stackSize: 0
   title: Helmet of Nugget
   quality: 2

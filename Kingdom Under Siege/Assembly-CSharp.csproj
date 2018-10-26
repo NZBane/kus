@@ -101,6 +101,7 @@
      <Compile Include="Assets\Scripts\TileScripts\TreeTile.cs" />
      <Compile Include="Assets\Scripts\TileScripts\WaterTile.cs" />
      <Compile Include="Assets\Scripts\UIRelated\CharacterPanel.cs" />
+     <Compile Include="Assets\Scripts\UIRelated\Guide.cs" />
      <Compile Include="Assets\Scripts\UIRelated\HandScript.cs" />
      <Compile Include="Assets\Scripts\UIRelated\IClickable.cs" />
      <Compile Include="Assets\Scripts\UIRelated\IDescribable.cs" />

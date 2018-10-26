@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bag : Item, IUseable
 { 
     //The amount of slots this bag has
+    [SerializeField]
     private int slots;
     //Refernences to the bag prefab
     [SerializeField]
