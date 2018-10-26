@@ -32,11 +32,16 @@ public class Guide : MonoBehaviour {
         {
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 1;
+            Time.timeScale = Time.timeScale > 0 ? 0 : 1; //pause the game 
+
+
         }
         else
         {
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = 0;
+            Time.timeScale = Time.timeScale > 0 ? 0 : 1; //pause the game 
+
         }
     }
 }
