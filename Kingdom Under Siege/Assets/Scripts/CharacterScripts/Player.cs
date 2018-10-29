@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -231,7 +232,8 @@ public class Player : Character
 
              MyAnimator.SetTrigger("die");
 
-              //  Application.Quit(); //works
+                SceneManager.LoadScene("MainMenu");
+                //  Application.Quit(); //works
                 //////////////////INSERT GAME OVER SCENE HERE!!!!!!!!!//////////////////////////////(but since enemy is using this, it will also trigger this event when enemy dies)
                 //character dies
             }
