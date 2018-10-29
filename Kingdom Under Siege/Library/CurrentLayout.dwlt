@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 36786
+  controlID: 56840
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 36764
+  controlID: 56841
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 36765
+  controlID: 56842
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 36722
+  controlID: 56762
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -340,7 +340,7 @@ MonoBehaviour:
     height: 338
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 1
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
@@ -419,14 +419,14 @@ MonoBehaviour:
     height: 567
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 25137.300380089255
+  lastFramingTime: 10068.794861384098
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -53.64319, y: 24.912498, z: -0.81195825}
+    m_Target: {x: -32.74753, y: 14.311245, z: -0.34839785}
     speed: 2
-    m_Value: {x: -53.64319, y: 24.912498, z: -0.81195825}
+    m_Value: {x: -32.74753, y: 14.311245, z: -0.34839785}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -458,9 +458,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 93.804596
+    m_Target: 48.15699
     speed: 2
-    m_Value: 93.804596
+    m_Value: 48.15699
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -939,29 +939,29 @@ MonoBehaviour:
     height: 567
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 74}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 5445c8fff8b1caffaeb9cbff5c42ceff7a44ceffa846ceffbc48ceff9e25cffface7ddff8cabdeff2cfffbff6efffbffb4fffbffc468fcff44f6ffff00000000624b0000fa76000092770000445c0100dc5c010084fd0100e4fd0100d414020006160200
+    m_ExpandedIDs: c2ddceffe6fbffff0000000048210000e02100007e220000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Runner
+      m_OriginalName: Runner
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -1781948
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
-  - MainMenu
+  - SampleScene
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -1053,20 +1053,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Sprites/Chest
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Sprites/Chest
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Carlisle\Desktop\Game\kus\Kingdom Under Siege
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 207}
-    m_SelectedIDs: f4350000
-    m_LastClickedID: 13812
-    m_ExpandedIDs: 000000001c350000ba38000044390000163d00009e3d00000c3f0000dc410000ca500000cc500000ce500000d0500000d2500000d4500000d6500000d8500000da500000dc500000de500000e0500000e2500000e4500000e6500000e8500000ea500000ec500000ee500000f0500000f2500000f4500000f6500000f8500000fa500000fc500000fe5000000051000002510000045100000651000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 061c0000
+    m_LastClickedID: 7174
+    m_ExpandedIDs: 000000001a0a0000d80d00006a0e00001012000064120000f412000062140000521500005817000030480000324800003448000036480000384800003a4800003c4800003e48000040480000424800004448000046480000484800004a4800004c4800004e48000050480000524800005448000056480000584800005a4800005c4800005e48000060480000624800006448000066480000684800006a4800006c48000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1094,7 +1094,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c350000ba38000044390000163d00009e3d00000c3f0000dc410000ca500000cc500000ce500000d0500000d2500000d4500000d6500000d8500000da500000dc500000de500000e0500000e2500000e4500000e6500000e8500000ea500000ec500000ee500000f0500000f2500000f4500000f6500000f8500000fa500000fc500000fe5000000051000002510000045100000651000000ca9a3b
+    m_ExpandedIDs: 000000001a0a0000d80d00006a0e00001012000064120000f412000062140000521500005817000030480000324800003448000036480000384800003a4800003c4800003e48000040480000424800004448000046480000484800004a4800004c4800004e48000050480000524800005448000056480000584800005a4800005c4800005e48000060480000624800006448000066480000684800006a4800006c48000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 136316
+  m_LastSelectedObjectID: -1524
 --- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
